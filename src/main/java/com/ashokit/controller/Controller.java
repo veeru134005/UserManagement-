@@ -18,52 +18,51 @@ public class Controller {
 
 	@Autowired
 	private UserService service;
-	
-	
+
 	@PostMapping(value = "/signin")
 	public String signIn(@RequestBody UserForm login) {
 		return service.signIn(login);
 	}
-	
-	//User Registrations- Start
-	
+
+	// User Registrations- Start
+
 	@PostMapping(value = "/signup")
 	public String userRegistration(@RequestBody UserForm signUp) {
 		return service.userRegistration(signUp);
 	}
-	
-	@GetMapping("/country")
-	public List<String> getCounty(){
+
+	@GetMapping("/countries")
+	public List<String> getCounty() {
 		return service.getCounty();
 	}
-	
+
 	@GetMapping("/state/{country}")
-	public List<String> getState(@PathVariable String country){
+	public List<String> getState(@PathVariable String country) {
 		return service.getState(country);
 	}
-	
+
 	@GetMapping("/city/{state}")
-	public List<String> getCity(@PathVariable String state){
+	public List<String> getCity(@PathVariable String state) {
 		return service.getCity(state);
 	}
-	
-	//User Registrations- End
-	
-	//User Unlock
+
+	// User Registrations- End
+
+	// User Unlock
 	@GetMapping("/activation/{email}")
 	public String userActivate(@PathVariable String email) {
 		return service.userActivate(email);
 	}
-	
+
 	@PostMapping("/unlockuser")
 	public String unLockUser(@RequestBody UserUnLock userUnLock) {
 		return service.userUnLock(userUnLock);
 	}
-	
+
 	// forgot-Password
 	@GetMapping("/forgot/{email}")
 	public String forgotPassword(@PathVariable String email) {
 		return service.forgotPassword(email);
 	}
-	
+
 }
