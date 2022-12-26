@@ -5,7 +5,7 @@ import java.util.Date;
 import lombok.Data;
 
 @Data
-public class UserSignUp {
+public class UserForm {
 
 	private Integer userId;
 	private String firstName;

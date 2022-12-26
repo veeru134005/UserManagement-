@@ -9,8 +9,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.ashokit.pojos.UserLogin;
-import com.ashokit.pojos.UserSignUp;
+import com.ashokit.pojos.UserForm;
 import com.ashokit.pojos.UserUnLock;
 import com.ashokit.service.UserService;
 
@@ -22,14 +21,14 @@ public class Controller {
 	
 	
 	@PostMapping(value = "/signin")
-	public String signIn(@RequestBody UserLogin login) {
+	public String signIn(@RequestBody UserForm login) {
 		return service.signIn(login);
 	}
 	
 	//User Registrations- Start
 	
 	@PostMapping(value = "/signup")
-	public String userRegistration(@RequestBody UserSignUp signUp) {
+	public String userRegistration(@RequestBody UserForm signUp) {
 		return service.userRegistration(signUp);
 	}
 	
@@ -51,9 +50,9 @@ public class Controller {
 	//User Registrations- End
 	
 	//User Unlock
-	@GetMapping("/activation")
-	public String userActivate() {
-		return service.userActivate();
+	@GetMapping("/activation/{email}")
+	public String userActivate(@PathVariable String email) {
+		return service.userActivate(email);
 	}
 	
 	@PostMapping("/unlockuser")
