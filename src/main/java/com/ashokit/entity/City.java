@@ -26,7 +26,7 @@ public class City {
 	private int citId;
 	private String cityName;
 	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-	@JoinColumn(name = "StateFik")
+	@JoinColumn(name = "StateId")
 	private State state;
 
 }

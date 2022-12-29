@@ -5,7 +5,7 @@ import java.util.Date;
 import lombok.Data;
 
 @Data
-public class UserForm {
+public class User {
 
 	private Integer userId;
 	private String firstName;
@@ -18,7 +18,6 @@ public class UserForm {
 	private String state;
 	private String city;
 	private String password;
-	private String tempPassword;
 	private boolean isUserActive;
 	
 }

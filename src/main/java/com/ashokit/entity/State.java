@@ -27,6 +27,6 @@ public class State {
 	private String stateName;
 	
 	@ManyToOne(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
-	@JoinColumn(name = "CountryFik")
+	@JoinColumn(name = "CountryId")
 	private Country country;
 }

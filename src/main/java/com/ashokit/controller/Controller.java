@@ -1,6 +1,6 @@
 package com.ashokit.controller;
 
-import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -9,7 +9,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.ashokit.pojos.UserForm;
+import com.ashokit.entity.Users;
+import com.ashokit.pojos.User;
 import com.ashokit.pojos.UserUnLock;
 import com.ashokit.service.UserService;
 
@@ -20,42 +21,42 @@ public class Controller {
 	private UserService service;
 
 	@PostMapping(value = "/signin")
-	public String signIn(@RequestBody UserForm login) {
-		return service.signIn(login);
+	public String login(@RequestBody User login) {
+		return service.login(login);
 	}
 
 	// User Registrations- Start
 
 	@PostMapping(value = "/signup")
-	public String userRegistration(@RequestBody UserForm signUp) {
-		return service.userRegistration(signUp);
+	public String userRegistration(@RequestBody Users signUp) throws Exception {
+		return service.registerUser(signUp);
 	}
 
 	@GetMapping("/countries")
-	public List<String> getCounty() {
+	public Map<Integer,String> getCounty() {
 		return service.getCounty();
 	}
 
-	@GetMapping("/state/{country}")
-	public List<String> getState(@PathVariable String country) {
-		return service.getState(country);
+	@GetMapping("/state/{countryid}")
+	public Map<Integer,String> getState(@PathVariable Integer countryid) {
+		return service.getState(countryid);
 	}
 
-	@GetMapping("/city/{state}")
-	public List<String> getCity(@PathVariable String state) {
-		return service.getCity(state);
+	@GetMapping("/city/{stateid}")
+	public Map<Integer,String> getCity(@PathVariable Integer stateid) {
+		return service.getCity(stateid);
 	}
 
 	// User Registrations- End
 
 	// User Unlock
-	@GetMapping("/activation/{email}")
-	public String userActivate(@PathVariable String email) {
-		return service.userActivate(email);
+	@GetMapping("/checkEmail/{email}")
+	public String checkEmail(@PathVariable String email) {
+		return service.checkEmail(email);
 	}
 
 	@PostMapping("/unlockuser")
-	public String unLockUser(@RequestBody UserUnLock userUnLock) {
+	public String unLockUser(@RequestBody UserUnLock userUnLock) throws Exception {
 		return service.userUnLock(userUnLock);
 	}
 

@@ -55,9 +55,6 @@ public class Users {
 
 	private String password;
 
-	@Column(name = "Tem_Password")
-	private String tempPassword;
-
-	private boolean isUserActive;
+	private boolean isUserUnlock;
 
 }
