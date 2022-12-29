@@ -1,6 +1,5 @@
 package com.ashokit.service;
 
-import java.rmi.ServerException;
 import java.util.Map;
 import java.util.Random;
 import java.util.stream.Collectors;
@@ -42,13 +41,16 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public String registerUser(Users userSignUp) throws Exception {
 
+		UserUtlity.validateRegistration(userSignUp);
+		
 		if (!checkEmail(userSignUp.getEmail()).isBlank()) {
-			throw new ServerException("Email Already Exists");
+			return "Email Already Exists";
 		}
 
 		userSignUp.setPassword(String.valueOf(new Random().nextInt(125452)));
 
 		sendEmail(userSignUp);
+
 		return userRepo.save(userSignUp) != null ? "UserCreated SuccessFully"
 				: "Unable to Create User Please try Again";
 	}
