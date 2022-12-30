@@ -10,6 +10,6 @@ import com.ashokit.entity.City;
 
 public interface CityRepository extends JpaRepository<City, Integer> {
 
-	@Query("select * from City  c where c.State.stateId=:stateId")
+	@Query("from City c where c.state.stateId=:stateId")
 	public List<City> getCity(@Param("stateId") Integer stateId);
 }

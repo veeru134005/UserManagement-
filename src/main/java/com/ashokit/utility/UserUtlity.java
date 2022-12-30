@@ -25,35 +25,35 @@ public class UserUtlity {
 	}
 
 	public static void validateRegistration(Users userSignUp) throws Exception {
-		if (userSignUp.getFirstName() != null) {
+		if (userSignUp.getFirstName() == null) {
 			throw new ServerException("Please Enter First Name");
 		}
 
-		if (userSignUp.getLastName() != null) {
+		if (userSignUp.getLastName() == null) {
 			throw new ServerException("Please Enter Last Name");
 		}
-		if (userSignUp.getEmail() != null) {
+		if (userSignUp.getEmail() == null) {
 			throw new ServerException("Please Enter EmailId");
 		}
-		if (userSignUp.getEmail() != null) {
+		if (userSignUp.getEmail() == null) {
 			throw new ServerException("Please Enter First Name");
 		}
-		if (userSignUp.getPhoneNumber() != null) {
+		if (userSignUp.getPhoneNumber() == null) {
 			throw new ServerException("Please Enter PhoneNumber");
 		}
-		if (userSignUp.getDob() != null) {
+		if (userSignUp.getDob() == null) {
 			throw new ServerException("Please Select Date Of Birth");
 		}
-		if (userSignUp.getGender() != null) {
+		if (userSignUp.getGender() == null) {
 			throw new ServerException("Please Select Gender");
 		}
-		if (userSignUp.getCountry() != null) {
+		if (userSignUp.getCountry() == null) {
 			throw new ServerException("Please Select Country");
 		}
-		if (userSignUp.getState() != null) {
+		if (userSignUp.getState() == null) {
 			throw new ServerException("Please Select Country");
 		}
-		if (userSignUp.getCity() != null) {
+		if (userSignUp.getCity() == null) {
 			throw new ServerException("Please Select City");
 		}
 

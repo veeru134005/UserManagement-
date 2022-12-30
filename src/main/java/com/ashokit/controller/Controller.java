@@ -10,9 +10,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ashokit.entity.Users;
-import com.ashokit.pojos.User;
+import com.ashokit.pojos.LoginForm;
 import com.ashokit.pojos.UserUnLock;
-import com.ashokit.service.UserService;
+import com.ashokit.repo.UserService;
 
 @RestController
 public class Controller {
@@ -21,7 +21,7 @@ public class Controller {
 	private UserService service;
 
 	@PostMapping(value = "/signin")
-	public String login(@RequestBody User login) {
+	public String login(@RequestBody LoginForm login) {
 		return service.login(login);
 	}
 

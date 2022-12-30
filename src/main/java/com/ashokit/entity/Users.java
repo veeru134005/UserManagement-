@@ -11,6 +11,8 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -35,10 +37,11 @@ public class Users {
 	@Column(name = "Email", unique = true, nullable = false)
 	private String email;
 
-	@Column(name = "Phone Number", nullable = false)
+	@Column(name = "PhoneNumber", nullable = false)
 	private Long phoneNumber;
 
 	@Temporal(TemporalType.DATE)
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/YYYY")
 	private Date dob;
 
 	@Column(name = "Gender", nullable = false)

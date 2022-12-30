@@ -4,20 +4,25 @@ import java.util.Map;
 import java.util.Random;
 import java.util.stream.Collectors;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.ashokit.entity.City;
 import com.ashokit.entity.Country;
 import com.ashokit.entity.State;
 import com.ashokit.entity.Users;
-import com.ashokit.pojos.User;
+import com.ashokit.pojos.LoginForm;
 import com.ashokit.pojos.UserUnLock;
 import com.ashokit.repo.CityRepository;
 import com.ashokit.repo.CountryRepository;
 import com.ashokit.repo.StateRepository;
 import com.ashokit.repo.UserRepository;
+import com.ashokit.repo.UserService;
 import com.ashokit.utility.UserUtlity;
 
+@Service
 public class UserServiceImpl implements UserService {
 
 	@Autowired
@@ -33,7 +38,7 @@ public class UserServiceImpl implements UserService {
 	private UserRepository userRepo;
 
 	@Override
-	public String login(User login) {
+	public String login(LoginForm login) {
 		return userRepo.login(login.getEmail(), login.getPassword()) != null ? "User Login Successfully"
 				: "Invalide Credentials";
 	}
@@ -81,11 +86,12 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
+	@Transactional
 	public String userUnLock(UserUnLock userUnLock) throws Exception {
 
 		UserUtlity.validateUserUnlockForm(userUnLock);
 
-		if (!userUnLock.getPassword().trim().equalsIgnoreCase(userRepo.getPassword(userUnLock.getEmail()))) {
+		if (!userUnLock.getTempPassword().trim().equalsIgnoreCase(userRepo.getPassword(userUnLock.getEmail()))) {
 			return "Please Enter Valide Temparary Password";
 		} else {
 

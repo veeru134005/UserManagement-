@@ -1,14 +1,14 @@
-package com.ashokit.service;
+package com.ashokit.repo;
 
 import java.util.Map;
 
 import com.ashokit.entity.Users;
-import com.ashokit.pojos.User;
+import com.ashokit.pojos.LoginForm;
 import com.ashokit.pojos.UserUnLock;
 
 public interface UserService {
 	
-	public String login(User login);
+	public String login(LoginForm login);
 	
 	//User Registrations- Start
 	public String registerUser(Users signUp) throws Exception;
