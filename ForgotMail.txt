@@ -1,0 +1,7 @@
+
+Respected ${firstName} ${lastName} </br>
+
+   your password is ${password}
+  
+  Thanks,
+  Veera-It.

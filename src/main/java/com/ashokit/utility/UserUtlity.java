@@ -1,11 +1,59 @@
 package com.ashokit.utility;
 
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.rmi.ServerException;
+import java.util.stream.Stream;
+
+import javax.mail.internet.MimeMessage;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessageHelper;
+import org.springframework.stereotype.Component;
 
 import com.ashokit.entity.Users;
 import com.ashokit.pojos.UserUnLock;
 
+@Component
 public class UserUtlity {
+
+	@Autowired
+	private JavaMailSender sender;
+
+	public boolean sendEmail(Users users) throws Exception {
+
+		MimeMessage mimeMsg = sender.createMimeMessage();
+
+		MimeMessageHelper messageHelper = new MimeMessageHelper(mimeMsg);
+
+		messageHelper.setTo(users.getEmail());
+		messageHelper.setSubject("Registration Mail");
+		messageHelper.setText(readBody("RegistrationMail.txt", users), true);
+		sender.send(mimeMsg);
+		return true;
+	}
+
+	private String readBody(String fileName, Users users) {
+
+		StringBuffer sb = new StringBuffer();
+		try (Stream<String> lines = Files.lines(Paths.get(fileName))) {
+
+			lines.forEach(line -> {
+
+				line = line.replace("${firstName}", users.getFirstName());
+				line = line.replace("${lastName}", users.getFirstName());
+				line = line.replace("${email}", users.getFirstName());
+
+				sb.append(line);
+			});
+
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+
+		return sb.toString();
+	}
 
 	public static void validateUserUnlockForm(UserUnLock userUnLock) throws Exception {
 

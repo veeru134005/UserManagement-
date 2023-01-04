@@ -1,0 +1,11 @@
+Respected ${firstName} ${lastName} </br>
+
+  Thank you joining for veeru-it family, your almost done your registration processs.</br>
+  
+  Please unlock your account by click on below link </br>
+  
+  <a href="http://localhost:8080/?email=${email}">click</a>
+  
+  Thansk,
+  Veera-It.
+
